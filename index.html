@@ -10,7 +10,7 @@
         margin-top: 20px;
         font-family: Arial, sans-serif;
     }
-    #yesBtn {
+    #yesBtn, #mysteryBtn {
         padding: 10px 20px;
         font-size: 16px;
         color: white;
@@ -30,16 +30,31 @@
     .hidden {
         display: none;
     }
+    a {
+        display: block;
+        margin-top: 20px;
+        font-size: 20px;
+        color: #ff007f;
+        text-decoration: none;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        margin-top: 20px;
+    }
 </style>
 </head>
 <body>
 
+<img src="cat.jpg.webp" alt="Valentine's Day Cat">
 <h2>Will you be my Valentine, Dameli?</h2>
-<button id="yesBtn">Yes</button>
+<button id="yesBtn" style="font-size: 16px;">Yes</button>
 <button id="noBtn">No</button>
 
 <div id="response" class="hidden">
-    <h3>Yay! 💖</h3>
+    <h3 id="responseText"></h3>
+    <a id="videoLink" class="hidden" href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank">Watch this special video!</a>
+    <button id="mysteryBtn" class="hidden" style="margin-top: 10rem;">?</button>
 </div>
 
 <script>
@@ -47,23 +62,33 @@
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
     const responseDiv = document.getElementById('response');
+    const responseText = document.getElementById('responseText');
+    const videoLink = document.getElementById('videoLink');
+    const mysteryBtn = document.getElementById('mysteryBtn');
 
     yesBtn.addEventListener('click', function() {
         yesBtn.classList.add('hidden');
         noBtn.classList.add('hidden');
         responseDiv.classList.remove('hidden');
-        responseDiv.innerHTML = '<h3>Yay! 💖 Dameli said Yes!</h3>';
+        responseText.textContent = 'Qazaqtyn valentinkasi qutty bolsyn zhanym!';
+        videoLink.classList.remove('hidden');
+        mysteryBtn.classList.remove('hidden');
+    });
+
+    mysteryBtn.addEventListener('click', function() {
+        alert("Here is the real link:");
+        window.location.href = "https://youtu.be/Y2rDb4Ur2dw?si=dG8tNBp9E3bCz6kL";
     });
 
     noBtn.addEventListener('click', function() {
         noCount++;
         if (noCount >= 6) {
-            alert("It's okay! Have a wonderful day!");
+            alert("otkazy ne prinimayutsya");
             yesBtn.classList.add('hidden');
             noBtn.classList.add('hidden');
             return;
         }
-        yesBtn.style.fontSize = parseInt(yesBtn.style.fontSize) + 2 + 'px';
+        yesBtn.style.fontSize = parseInt(yesBtn.style.fontSize) + 20 + 'px';
         yesBtn.style.padding = parseInt(yesBtn.style.padding) + 5 + 'px';
     });
 </script>
