@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine?</title>
+<style>
+    body {
+        text-align: center;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+    }
+    #yesBtn {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        background-color: #ff007f;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    #noBtn {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: lightgray;
+        color: black;
+        border: none;
+        cursor: pointer;
+    }
+    .hidden {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<h2>Will you be my Valentine, Dameli?</h2>
+<button id="yesBtn">Yes</button>
+<button id="noBtn">No</button>
+
+<div id="response" class="hidden">
+    <h3>Yay! 💖</h3>
+</div>
+
+<script>
+    let noCount = 0;
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const responseDiv = document.getElementById('response');
+
+    yesBtn.addEventListener('click', function() {
+        yesBtn.classList.add('hidden');
+        noBtn.classList.add('hidden');
+        responseDiv.classList.remove('hidden');
+        responseDiv.innerHTML = '<h3>Yay! 💖 Dameli said Yes!</h3>';
+    });
+
+    noBtn.addEventListener('click', function() {
+        noCount++;
+        if (noCount >= 6) {
+            alert("It's okay! Have a wonderful day!");
+            yesBtn.classList.add('hidden');
+            noBtn.classList.add('hidden');
+            return;
+        }
+        yesBtn.style.fontSize = parseInt(yesBtn.style.fontSize) + 2 + 'px';
+        yesBtn.style.padding = parseInt(yesBtn.style.padding) + 5 + 'px';
+    });
+</script>
+
+</body>
+</html>
