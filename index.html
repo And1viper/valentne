@@ -10,7 +10,7 @@
         margin-top: 20px;
         font-family: Arial, sans-serif;
     }
-    #yesBtn, #mysteryBtn {
+    #yesBtn, #mysteryBtn, #backBtn{
         padding: 10px 20px;
         font-size: 16px;
         color: white;
@@ -46,16 +46,24 @@
 </head>
 <body>
 
-<img src="cat.jpg.webp" alt="Valentine's Day Cat">
-<h2>Will you be my Valentine, Dameli?</h2>
-<button id="yesBtn" style="font-size: 16px;">Yes</button>
-<button id="noBtn">No</button>
+<div id="main">
+    <img src="https://www.shutterstock.com/image-photo/couple-happy-kittens-sleep-together-600nw-2237607353.jpg" alt="Valentine's Day Cat" width="500px">
+    <h2>Will you be my Valentine, Dameli?</h2>
+    <button id="yesBtn" style="font-size: 16px;">Yes</button>
+    <button id="noBtn">No</button>
 
-<div id="response" class="hidden">
-    <h3 id="responseText"></h3>
-    <a id="videoLink" class="hidden" href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank">Watch this special video!</a>
-    <button id="mysteryBtn" class="hidden" style="margin-top: 10rem;">?</button>
+    <div id="response" class="hidden">
+        <h3 id="responseText"></h3>
+        <a id="videoLink" class="hidden" href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank">Watch this special video!</a>
+        <button id="mysteryBtn" class="hidden" style="margin-top: 10rem;">?</button>
+        <a id="realLink" class="hidden" href="https://youtu.be/Y2rDb4Ur2dw?si=dG8tNBp9E3bCz6kL" target="_blank">Real video</a>
+    </div>
 </div>
+
+<div id="noOtkaz" class="hidden">
+    <h3 id="responseText">Otkazy ne prinimayutsya</h3>
+    <button id="backBtn" style="font-size: 16px;">Try one more time</button>
+</div> 
 
 <script>
     let noCount = 0;
@@ -65,6 +73,11 @@
     const responseText = document.getElementById('responseText');
     const videoLink = document.getElementById('videoLink');
     const mysteryBtn = document.getElementById('mysteryBtn');
+
+    const main = document.getElementById('main');
+    const noOtkaz = document.getElementById('noOtkaz');
+    const realLink = document.getElementById('realLink');
+    const backBtn = document.getElementById('backBtn');
 
     yesBtn.addEventListener('click', function() {
         yesBtn.classList.add('hidden');
@@ -76,20 +89,26 @@
     });
 
     mysteryBtn.addEventListener('click', function() {
-        alert("Here is the real link:");
-        window.location.href = "https://youtu.be/Y2rDb4Ur2dw?si=dG8tNBp9E3bCz6kL";
+        videoLink.classList.add('hidden');
+        mysteryBtn.classList.add('hidden');
+        realLink.classList.remove('hidden');
     });
 
     noBtn.addEventListener('click', function() {
         noCount++;
         if (noCount >= 6) {
-            alert("otkazy ne prinimayutsya");
-            yesBtn.classList.add('hidden');
-            noBtn.classList.add('hidden');
+            noCount = 0;
+            main.classList.add("hidden");
+            noOtkaz.classList.remove("hidden");
             return;
         }
         yesBtn.style.fontSize = parseInt(yesBtn.style.fontSize) + 20 + 'px';
-        yesBtn.style.padding = parseInt(yesBtn.style.padding) + 5 + 'px';
+    });
+
+    backBtn.addEventListener('click', function() {
+        main.classList.remove("hidden");
+        noOtkaz.classList.add("hidden");
+        yesBtn.style.fontSize = 16 + "px";
     });
 </script>
 
